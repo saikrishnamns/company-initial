@@ -30,6 +30,19 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile('org.springframework.boot:spring-boot-starter')
+  compile('org.springframework.boot:spring-boot-configuration-processor')
+  compile('org.springframework.boot:spring-boot-starter-actuator')
+  compile('org.springframework.boot:spring-boot-starter-hateoas')
+  compile('org.springframework.boot:spring-boot-starter-data-rest')
+  compile('org.springframework.boot:spring-boot-starter-data-jpa')
+  compile('org.springframework.boot:spring-boot-starter-cloud-connectors')
+  runtime('com.h2database:h2')
+  runtime('mysql:mysql-connector-java')
+  compile('org.springframework.boot:spring-boot-starter-web')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+  testCompile('com.github.stefanbirkner:system-rules:1.16.0')
+  compile("org.springframework.boot:spring-boot-starter-actuator")
 }
 
 dependencyManagement {
