@@ -1,6 +1,7 @@
 
 package io.rscale.training.company;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
@@ -25,18 +26,20 @@ public class CloudDataConfig extends AbstractCloudConfig {
 	@Bean
 	public DataSource dataSource() throws Exception {
 		DataSource dataSource = cloud().getSingletonServiceConnector(DataSource.class, null);
+		Connection connection = dataSource.getConnection();
 		if (!isMySQL(dataSource)) {
 			logger.error("MySQL required when running cloud profile.");
 			throw new UnsatisfiedDependencyException("javax.sql.DataSource", "javax.sql.DataSource",
 					"javax.sql.DataSource", "MySQL required when running cloud profile.");
 		}
+		connection.close();
 		return dataSource;
 	}
 
 	private boolean isMySQL(DataSource dataSource) {
 		// implement me!
 		try {
-			logger.info("product name"+dataSource.getConnection().getMetaData().getDatabaseProductName());
+			logger.info("product name" + dataSource.getConnection().getMetaData().getDatabaseProductName());
 			if (dataSource.getConnection().getMetaData().getDatabaseProductName().contains("MySQL")) {
 				return true;
 			}
